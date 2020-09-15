@@ -12,7 +12,6 @@ const customStyles = {
         marginRight: '-50%',
         padding: '0',
         width: '60%',
-        // border: '1px transparent',
         transform: 'translate(-50%, -50%)',
         boxShadow: `rgba(0, 0, 0, 0.25) 0px 12px 15px 0px`,
         overflow: 'hidden'
@@ -42,7 +41,7 @@ const ProfileHeader = () => {
     return (
         <>
             <header>
-                <p class="">Hi there! Welcome to your education showcase.</p>
+                <p class="">Hi there! Welcome to your education page.</p>
                 <input type="submit" value="Add new Education" class="btn solid" onClick={openModal} />
             </header>
 

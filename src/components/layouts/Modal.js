@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
+import * as actions from '../../store/actions'
 import countries from '../../store/jsons/country.json'
+import { generateId } from '../utils/idGenerator'
 const AddModal = (props) => {
     const [country, setCountry] = useState('')
     const [school, setSchool] = useState('')
@@ -22,16 +26,34 @@ const AddModal = (props) => {
     const handleCountry = (selectedOption) => {
         setCountryName(selectedOption)
     };
-    const handlSave = () => {
-        alert()
+
+    const handlSave = async (e) => {
+        e.preventDefault()
+
+        let postObj = {
+            id: generateId(), schoolLocation: countryName, school, degree, field, startYear, endYear, grade, description
+        }
+        saveProfile(postObj)
+    }
+
+    const saveProfile = async (postObj) => {
+        const response = await JSON.parse(localStorage.getItem('profile'))
+        if (response && response.length > 0) {
+            let newData = [...response, postObj]
+            localStorage.setItem('profile', JSON.stringify(newData))
+
+        } else {
+            localStorage.setItem('profile', JSON.stringify([postObj]))
+        }
     }
 
     useEffect(() => {
+        console.log(props.getProfile(), 'fuck')
         fetchCountries()
     }, [])
 
     let countryList = [];
-    countries.forEach((value, i) => {
+    countries.forEach((value) => {
         countryList.push({ value: value.name, label: value.name });
     });
 
@@ -71,7 +93,7 @@ const AddModal = (props) => {
                         <div className="input-field input-field-modal">
                             <i className="fas fa-user"></i>
                             <input type="text" placeholder="Havard university" value={school}
-                                onChange={({ target }) => setSchool(target.value)} required={true}
+                                onChange={({ target }) => setSchool(target.value)} required={false}
                             />
                         </div>
                     </div>
@@ -81,7 +103,7 @@ const AddModal = (props) => {
                             <i className="fas fa-user"></i>
                             <input type="text" placeholder="Bachelor's"
                                 onChange={({ target }) => setDegree(target.value)}
-                                required={true}
+                                required={false}
                             />
                         </div>
                     </div>
@@ -92,7 +114,7 @@ const AddModal = (props) => {
                             <i className="fas fa-user"></i>
                             <input type="text" placeholder="Computer Science"
                                 onChange={({ target }) => setField(target.value)}
-                                required={true}
+                                required={false}
                             />
                         </div>
                     </div>
@@ -102,7 +124,7 @@ const AddModal = (props) => {
                             <div className="input-field input-field-modal spaced">
                                 <i className="fas fa-user"></i>
                                 <input type="month" id="start__year" placeholder="Start Year"
-                                    onChange={(e) => setStartYear(e.target.value)} required={true}
+                                    onChange={(e) => setStartYear(e.target.value)} required={false}
                                 />
                             </div>
                         </div>
@@ -111,7 +133,7 @@ const AddModal = (props) => {
                             <div className="input-field input-field-modal">
                                 <i className="fas fa-user"></i>
                                 <input type="month" id="end__year" placeholder="End year"
-                                    onChange={(e) => setEndYear(e.target.value)} required={true}
+                                    onChange={(e) => setEndYear(e.target.value)} required={false}
                                 />
                             </div>
                         </div>
@@ -121,7 +143,7 @@ const AddModal = (props) => {
                         <div className="input-field input-field-modal">
                             <i className="fas fa-user"></i>
                             <input type="text" id="school__grade" value={grade} placeholder="Your grade"
-                                onChange={(e) => setGrade(e.target.value)} required={true}
+                                onChange={(e) => setGrade(e.target.value)} required={false}
                             />
                         </div>
                     </div>
@@ -131,18 +153,28 @@ const AddModal = (props) => {
                             <textarea name="" id="school__description" cols="30" rows="10"
                                 placeholder='Description....'
                                 onChange={({ target }) => setDescription(target.value)}
-                                required={true}
-                                required={true}
+                                required={false}
+                                required={false}
                             ></textarea>
                         </div>
                     </div>
+                    <div className="modal-footer">
+                        <input type="submit" value="Enter" className="btn solid" />
+                    </div>
                 </form>
             </div>
-            <div className="modal-footer">
-                <input type="submit" value="Enter" className="btn solid" />
-            </div>
+
         </div>
     )
 }
 
-export default AddModal
+
+const mapStateToProps = state => {
+    console.log("state", state)
+    const { schools, loading } = state.schoolData
+    return {
+        schools, loading
+    }
+}
+
+export default withRouter(connect(mapStateToProps, actions)(AddModal));

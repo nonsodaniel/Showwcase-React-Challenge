@@ -1,7 +1,7 @@
-import { Get, Put } from '../../apiServices/apiHandler.service'
+import { Get } from '../../apiServices/apiHandler.service'
 
 import {
-    LOADING, GET_SCHOOLS, GET_SCHOOLS_ERROR
+    LOADING, GET_SCHOOLS, GET_SCHOOLS_ERROR, ADD_PROFILE, GET_PROFILE
 } from "./types";
 
 
@@ -25,3 +25,32 @@ export const getSchools = () => {
         }
     }
 }
+
+export const getProfile = () => {
+    return async (dispatch) => {
+        const response = await JSON.parse(localStorage.getItem('profile'))
+        if (response && response.length > 0) {
+            dispatch({ type: GET_PROFILE, payload: response })
+        } else {
+            dispatch({ type: GET_PROFILE, payload: [] })
+        }
+    }
+}
+
+export const saveProfile = async (postObj) => {
+    return async (dispatch) => {
+        const response = await JSON.parse(localStorage.getItem('profile'))
+        if (response && response.length > 0) {
+            let newData = [...response, postObj]
+            dispatch({ type: ADD_PROFILE, payload: newData })
+            localStorage.setItem('profile', JSON.stringify(newData))
+
+        } else {
+            localStorage.setItem('profile', JSON.stringify([postObj]))
+            dispatch({ type: ADD_PROFILE, payload: [postObj] })
+        }
+    }
+}
+
+
+
