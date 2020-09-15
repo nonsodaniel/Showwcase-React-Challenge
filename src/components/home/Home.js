@@ -3,19 +3,23 @@ import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom'
 import * as actions from '../../store/actions'
 import Modal from 'react-modal'
+import AddModal from '../layouts/Modal';
+import '../assets/css/style.css'
 
 
 const customStyles = {
     content: {
+        height: '30rem',
         top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
+        padding: '0',
         width: '50%',
         // border: '1px transparent',
         transform: 'translate(-50%, -50%)',
-        boxShadow: '0in 7.5pt 0.625pc -6pt #a0a0a0'
+        boxShadow: `rgba(0, 0, 0, 0.25) 0px 12px 15px 0px;`
     }
 };
 
@@ -61,16 +65,7 @@ const Home = (props) => {
                 contentLabel="Example Modal"
                 closeTimeoutMS={1000}
             >
-
-                <button onClick={closeModal}>close</button>
-                <div>I am a modal</div>
-                <form>
-                    <input />
-                    <button>tab navigation</button>
-                    <button>stays</button>
-                    <button>inside</button>
-                    <button>the modal</button>
-                </form>
+                <AddModal closeModal={closeModal} />
             </Modal>
         </div>
 

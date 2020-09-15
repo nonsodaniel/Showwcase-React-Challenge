@@ -24,3 +24,9 @@ code {
 .ReactModal__Overlay--before-close{
   opacity: 0;
 }
+
+.ReactModal__Content{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 12px 15px 0px;
+border: 0 !important;
+margin-bottom: 2rem;
+}
