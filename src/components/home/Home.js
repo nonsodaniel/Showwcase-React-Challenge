@@ -23,50 +23,26 @@ const customStyles = {
     }
 };
 
-const Home = (props) => {
-    const [schools, setSchools] = useState([])
-
-    const fetchSchools = async () => {
-        await props.getSchools()
-        setSchools(props.schools)
+const Home = () => {
+    const [name, setname] = useState('')
+    const handleSave = (e) => {
+        e.preventDefault()
+        console.log(name)
+        localStorage.setItem('name', name)
     }
-
-    const [modalIsOpen, setIsOpen] = React.useState(false);
-    function openModal() {
-        setIsOpen(true);
-    }
-
-    function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        // subtitle.style.color = '#f00';
-    }
-
-    function closeModal() {
-        setIsOpen(false);
-    }
-
-
-
-
-    useEffect(() => {
-        fetchSchools()
-        Modal.setAppElement('body');
-    }, [])
     return (
-        <div>
-            Hello
-
-            <button onClick={openModal}>Open Modal</button>
-            <Modal
-                isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="Example Modal"
-                closeTimeoutMS={1000}
-            >
-                <AddModal closeModal={closeModal} />
-            </Modal>
+        <div class="home">
+            <div class="form-wrap">
+                <form class="sign-in-form" onSubmit={handleSave}>
+                    <p class="text-welcome">Hi there! Welcome to your education showcase.</p>
+                    <p class="text-desc">Type your name and click "Enter" below to begin!</p>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Your name" onChange={({ target }) => setname(target.value)} />
+                    </div>
+                    <button type="submit" class="btn solid" disabled={name ? false : true} >Enter</button>
+                </form>
+            </div>
         </div>
 
     )
