@@ -1,33 +1,12 @@
-import React, { Component, useState, useEffect } from 'react'
-import { connect } from 'react-redux';
-import { withRouter, NavLink } from 'react-router-dom'
-import * as actions from '../../store/actions'
-import Modal from 'react-modal'
-import AddModal from '../layouts/Modal';
+import React, { useState } from 'react'
+import { withRouter } from 'react-router-dom'
 import '../assets/css/style.css'
 
-
-const customStyles = {
-    content: {
-        height: '30rem',
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        padding: '0',
-        width: '50%',
-        // border: '1px transparent',
-        transform: 'translate(-50%, -50%)',
-        boxShadow: `rgba(0, 0, 0, 0.25) 0px 12px 15px 0px;`
-    }
-};
-
-const Home = () => {
+const Home = (props) => {
     const [name, setname] = useState('')
     const handleSave = (e) => {
         e.preventDefault()
-        console.log(name)
+        props.history.push(`/profile/${name}`)
         localStorage.setItem('name', name)
     }
     return (
@@ -49,12 +28,4 @@ const Home = () => {
 }
 
 
-const mapStateToProps = state => {
-    const { schools, loading } = state.schoolData
-    return {
-        schools, loading
-    }
-}
-
-export default withRouter(connect(mapStateToProps, actions)(Home));
-
+export default withRouter(Home);
