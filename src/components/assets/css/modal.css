@@ -55,3 +55,14 @@ select:focus{
     border-radius: 50%;
     margin: 1rem
 }
+
+.css-8iv5ev-control{
+    min-height: inherit !important;
+    background-color: #f0f0f0 !important;
+    border-radius: 0;
+    border: 1px transparent !important;
+    border-color: #f0f0f0 !important;
+}
+.css-hl4258-ValueContainer:focus{
+    border: none !important;
+}
