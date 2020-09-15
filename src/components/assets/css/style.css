@@ -18,6 +18,10 @@ body,
 input {
   font-family: "Poppins", sans-serif;
 }
+.container{
+  height: 100vh;
+  overflow: hidden;
+}
 
 .home {
   width: 100%;
@@ -120,7 +124,7 @@ form.sign-in-form {
 
 /* MAIN */
 header{
-  height: 10rem;
+  height: 6rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -166,7 +170,8 @@ height: 30rem;
   color: black;
 }
 .main-wrap{
-  /* border: 1px solid blue; */
+  height: 40rem;
+    overflow-y: scroll;
     min-width: 67%;
 }
 .col{

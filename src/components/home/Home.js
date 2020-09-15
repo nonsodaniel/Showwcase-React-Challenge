@@ -17,7 +17,8 @@ const Home = (props) => {
                     <p class="text-desc">Type your name and click "Enter" below to begin!</p>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Your name" onChange={({ target }) => setname(target.value)} />
+                        <input type="text" placeholder="Your name"
+                            onChange={({ target }) => setname(target.value)} />
                     </div>
                     <button type="submit" class="btn solid" disabled={name ? false : true} >Enter</button>
                 </form>

@@ -2,24 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom'
 import * as actions from '../../store/actions'
-import Modal from 'react-modal'
-import AddModal from '../layouts/Modal';
 
-const customStyles = {
-    content: {
-        height: '30rem',
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        padding: '0',
-        width: '50%',
-        // border: '1px transparent',
-        transform: 'translate(-50%, -50%)',
-        boxShadow: `rgba(0, 0, 0, 0.25) 0px 12px 15px 0px;`
-    }
-};
+import ProfileHeader from './ProfileHeader';
+import ProfileAside from './ProfileAside';
+import ProfileDetails from './ProfileDetails';
+
 
 
 const Profile = (props) => {
@@ -30,52 +17,21 @@ const Profile = (props) => {
         setSchools(props.schools)
     }
 
-    const [modalIsOpen, setIsOpen] = React.useState(false);
-    function openModal() {
-        setIsOpen(true);
-    }
 
-    function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        // subtitle.style.color = '#f00';
-    }
-
-    function closeModal() {
-        setIsOpen(false);
-    }
     useEffect(() => {
         fetchSchools()
-        Modal.setAppElement('body');
+
     }, [])
     return (
-        <div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <button onClick={openModal}>Open Modal</button>
-            <Modal
-                isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="Example Modal"
-                closeTimeoutMS={1000}
-            >
-                <AddModal closeModal={closeModal} />
-            </Modal>
-        </div>
+        <>
+            <ProfileHeader />
+            <div class="content">
+                <div class="row">
+                    <ProfileAside />
+                    <ProfileDetails />
+                </div>
+            </div>
+        </>
     )
 }
 
@@ -87,3 +43,6 @@ const mapStateToProps = state => {
 }
 
 export default withRouter(connect(mapStateToProps, actions)(Profile));
+
+
+
