@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
-import Test from './components/Test';
 import Home from './components/home/Home';
 
 
