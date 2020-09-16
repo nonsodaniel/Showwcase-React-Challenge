@@ -41,8 +41,8 @@ const ProfileHeader = () => {
     return (
         <>
             <header>
-                <p class="">Hi there! Welcome to your education page.</p>
-                <input type="submit" value="Add new Education" class="btn solid" onClick={openModal} />
+                <p className="welcome__edu">Hi there! Welcome to your education page.</p>
+                <input type="submit" value="Add new Education" className="btn solid" onClick={openModal} />
             </header>
 
             <Modal

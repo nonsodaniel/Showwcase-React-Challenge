@@ -6,7 +6,6 @@ import * as actions from '../../store/actions'
 import countries from '../../store/jsons/country.json'
 import { generateId } from '../utils/idGenerator'
 const AddModal = (props) => {
-    const [country, setCountry] = useState('')
     const [school, setSchool] = useState('')
     const [degree, setDegree] = useState('')
     const [grade, setGrade] = useState('')
@@ -16,21 +15,18 @@ const AddModal = (props) => {
     const [description, setDescription] = useState('')
     const [countryName, setCountryName] = useState('')
     const [schoolName, setSchoolName] = useState('')
-
+    const { getSchools } = props;
 
     const closeModal = () => {
         props.closeModal()
     }
-    const fetchCountries = () => {
-        setCountry(countries)
-    }
+
     const handleCountry = (selectedOption) => {
         setCountryName(selectedOption)
         setSchoolName('')
     };
     const handleSchool = (selectedOption) => {
         setSchoolName(selectedOption)
-
         console.log(selectedOption)
     };
 
@@ -58,17 +54,14 @@ const AddModal = (props) => {
         }
     }
 
-    useEffect(() => {
-        fetchCountries()
-    }, [])
 
     useEffect(() => {
-        props.getSchools(countryName.value)
-    }, [countryName])
+        getSchools(countryName.value)
+    }, [countryName, getSchools])
 
     useEffect(() => {
         setSchool(props.schools)
-    }, [props.schools || props.loading])
+    }, [props.schools, props.loading])
 
     let countryList = [];
     countries.forEach((value) => {
@@ -216,7 +209,6 @@ const AddModal = (props) => {
                                 cols="30" rows="10"
                                 placeholder='Description....'
                                 onChange={({ target }) => setDescription(target.value)}
-                                required={false}
                                 required={false}
                             ></textarea>
                         </div>

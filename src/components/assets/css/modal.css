@@ -66,17 +66,14 @@ select:focus{
   }
   .school__description{
     border-color: transparent;
-      height: 53px;
+    height: 90px;
       width: 100%;
       margin: 0px;
       position: absolute;
       background-color: #f0f0f0;
       padding: 1rem 1.5rem;
   }
-  .school__description:focus{
-
-  }
-  
+ 
 
 .css-8iv5ev-control{
     min-height: inherit !important;

@@ -6,23 +6,19 @@ import * as actions from '../../store/actions'
 import ProfileHeader from './ProfileHeader';
 import ProfileAside from './ProfileAside';
 import ProfileDetails from './ProfileDetails';
-// import noDataImg from '../assets/noData.jpeg'
 import NoData from '../layouts/NoData';
 
 
 
 const Profile = (props) => {
-    const [profile, setProfile] = useState([])
-
-    const fetchProfile = async () => {
-        await props.getProfile()
-        setProfile(props.profile)
-    }
-
+    const { getProfile } = props;
 
     useEffect(() => {
+        const fetchProfile = async () => {
+            await getProfile()
+        }
         fetchProfile()
-    }, [])
+    }, [getProfile])
 
     const details = <>
         <div class="content">
@@ -49,10 +45,13 @@ const Profile = (props) => {
 }
 
 const mapStateToProps = state => {
+
     const { profile } = state.schoolData
+    console.log("state", profile)
     return {
         profile
     }
+
 }
 
 export default withRouter(connect(mapStateToProps, actions)(Profile));
