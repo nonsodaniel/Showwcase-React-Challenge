@@ -6,39 +6,58 @@ import * as actions from '../../store/actions'
 import ProfileHeader from './ProfileHeader';
 import ProfileAside from './ProfileAside';
 import ProfileDetails from './ProfileDetails';
+import noDataImg from '../assets/noData.jpeg'
+import NoData from '../layouts/NoData';
 
 
 
 const Profile = (props) => {
-    const [schools, setSchools] = useState([])
+    const [profile, setProfile] = useState([])
 
-    const fetchSchools = async () => {
-        await props.getSchools()
-        setSchools(props.schools)
+    const fetchProfile = async () => {
+        await props.getProfile()
+        setProfile(props.profile)
     }
 
 
     useEffect(() => {
-        fetchSchools()
-
+        fetchProfile()
+        console.log(props.profile)
     }, [])
+    // useEffect(() => {
+
+    // }, [props.profile || props.loading])
+
+    const details = <>
+
+        <div class="content">
+            <div class="row">
+                <ProfileAside data={props.profile} />
+                <ProfileDetails data={props.profile} />
+            </div>
+        </div>
+    </>
+
+
     return (
         <>
             <ProfileHeader />
-            <div class="content">
-                <div class="row">
-                    <ProfileAside />
-                    <ProfileDetails />
-                </div>
-            </div>
+            {
+                !props.profile || !props.profile.length > 0 ?
+                    <div className="empty-state">
+                        <NoData />
+                    </div> : details
+            }
+
         </>
     )
 }
 
 const mapStateToProps = state => {
-    const { schools, loading } = state.schoolData
+    // console.log("state", state)
+    const { profile } = state.schoolData
     return {
-        schools, loading
+        profile
     }
 }
 

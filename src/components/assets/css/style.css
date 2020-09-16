@@ -189,7 +189,12 @@ height: 30rem;
 .main__ul{
   margin-left: 1rem;
 }
-
+.empty-state{
+  height: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
 
