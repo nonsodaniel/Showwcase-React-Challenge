@@ -5,14 +5,13 @@ import {
 } from "./types";
 
 
-export const getSchools = () => {
+export const getSchools = (countryName) => {
     return async (dispatch) => {
         try {
             dispatch({ type: LOADING, payload: true });
             dispatch({ type: GET_SCHOOLS, payload: null })
             dispatch({ type: GET_SCHOOLS_ERROR, payload: null })
-
-            const response = await Get(`search?name=`)
+            const response = await Get(`search?name=&country=${countryName}`)
             const { status } = response;
             if (status === 200) {
                 dispatch({ type: GET_SCHOOLS, payload: response.data })

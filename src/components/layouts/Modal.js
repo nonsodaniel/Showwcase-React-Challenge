@@ -15,6 +15,7 @@ const AddModal = (props) => {
     const [endYear, setEndYear] = useState('')
     const [description, setDescription] = useState('')
     const [countryName, setCountryName] = useState('')
+    const [schoolName, setSchoolName] = useState('')
 
 
     const closeModal = () => {
@@ -25,6 +26,10 @@ const AddModal = (props) => {
     }
     const handleCountry = (selectedOption) => {
         setCountryName(selectedOption)
+        console.log("change")
+    };
+    const handleSchool = (selectedOption) => {
+        setSchoolName(selectedOption)
     };
 
     const handlSave = async (e) => {
@@ -41,9 +46,10 @@ const AddModal = (props) => {
         if (response && response.length > 0) {
             let newData = [...response, postObj]
             localStorage.setItem('profile', JSON.stringify(newData))
-
+            await props.getProfile()
         } else {
             localStorage.setItem('profile', JSON.stringify([postObj]))
+            await props.getProfile()
         }
     }
 
@@ -52,10 +58,28 @@ const AddModal = (props) => {
         fetchCountries()
     }, [])
 
+    useEffect(() => {
+        props.getSchools(countryName.value)
+    }, [countryName])
+
+    useEffect(() => {
+        setSchool(props.schools)
+    }, [props.schools || props.loading])
+
     let countryList = [];
     countries.forEach((value) => {
         countryList.push({ value: value.name, label: value.name });
     });
+
+
+    let schoolList = [];
+    console.log('school', school)
+    if (school && school.length > 0) {
+        school.forEach((value) => {
+            schoolList.push({ value: value.name, label: value.name });
+        });
+    }
+
 
     return (
         <div className="modal-container">
@@ -92,8 +116,17 @@ const AddModal = (props) => {
                         <label htmlFor="school__name">School</label>
                         <div className="input-field input-field-modal">
                             <i className="fas fa-user"></i>
-                            <input type="text" placeholder="Havard university" value={school}
-                                onChange={({ target }) => setSchool(target.value)} required={false}
+                            <Select
+                                value={schoolName}
+                                onChange={handleSchool}
+                                options={schoolList}
+                                className="mySelect"
+                                placeholder="My School"
+                                isDisabled={schoolList.length > 0 ? false : true}
+                                theme={{
+                                    borderRadius: 0,
+                                    spacing: { controlHeight: 55, baseUnit: 5 },
+                                }}
                             />
                         </div>
                     </div>
