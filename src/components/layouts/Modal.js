@@ -29,13 +29,16 @@ const AddModal = (props) => {
     };
     const handleSchool = (selectedOption) => {
         setSchoolName(selectedOption)
+
+        console.log(selectedOption)
     };
 
     const handlSave = async (e) => {
         e.preventDefault()
-
         let postObj = {
-            id: generateId(), schoolLocation: countryName, school, degree, field, startYear, endYear, grade, description
+            id: generateId(), schoolLocation: countryName,
+            school: schoolName.value, website: schoolName.website,
+            degree, field, startYear, endYear, grade, description
         }
         saveProfile(postObj)
     }
@@ -76,7 +79,7 @@ const AddModal = (props) => {
     let schoolList = [];
     if (school && school.length > 0) {
         school.forEach((value) => {
-            schoolList.push({ value: value.name, label: value.name });
+            schoolList.push({ value: value.name, label: value.name, website: value.web_pages[0] });
         });
     }
 

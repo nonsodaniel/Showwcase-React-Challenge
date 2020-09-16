@@ -1,4 +1,6 @@
 import React from 'react'
+import { convertMonthYear } from '../utils/dateFunctions'
+import eduLogo from '../assets/edulogo.png'
 
 const ProfileDetails = (props) => {
     return (
@@ -11,14 +13,21 @@ const ProfileDetails = (props) => {
                             console.log(o)
                             let { id, school, field, grade, degree, startYear, endYear, description } = o
                             return (
-                                <div class="col">
-                                    <h5 class="main__title">{degree} {field} @  University</h5>
-                                    <p class="main__date">August 2019 - Present</p>
-                                    <ul class="main__ul">
-                                        <li>Not all those who wander are losts</li>
-                                        <li>Not all those who wander are losts</li>
-                                        <li>Not all those who wander are losts</li>
-                                    </ul>
+                                <div class="col" key={id}>
+                                    <div className="main-top">
+                                        <div className="main__logo">  <img src={eduLogo} alt="" /> </div>
+                                        <span className="main__icon-box">
+                                            <i class="fas fa-edit pointer"></i>
+                                            <i class="fas fa-trash pointer"></i>
+                                        </span>
+                                    </div>
+                                    <h5 class="main__title"> {school}  University</h5>
+                                    <p class="main__degree">{degree} in {field}</p>
+                                    <p class="main__date">{convertMonthYear(startYear)} - {convertMonthYear(endYear)}</p>
+                                    <p class="main__grade">Grade: <b><i>{grade}</i> </b></p>
+                                    <p className="main__desc">
+                                        {description}
+                                    </p>
                                 </div>
                             )
                         })

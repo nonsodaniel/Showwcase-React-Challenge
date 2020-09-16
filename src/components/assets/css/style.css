@@ -174,13 +174,35 @@ height: 30rem;
     overflow-y: scroll;
     min-width: 67%;
 }
+.main-content{
+  width: 90%;
+    margin: 0 auto;
+}
+.main-top{
+  display: flex;
+    justify-content: space-between;
+}
+.main__icon-box{
+  height: 2rem;
+    width: 4rem;
+    display: flex;
+    justify-content: space-between;
+}
+.main__icon-box i{
+  font-weight: 200;
+  font-size: 1.4rem;
+  color: grey;
+}
+.main__icon-box i:nth-child(2){
+  font-weight: 900;
+}
 .col{
   padding: 2rem 3rem;
   margin-bottom: 1rem;
 }
 .main__title{
   font-family: sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 }
 .main__date{
   font-size: .9rem;
@@ -188,6 +210,20 @@ height: 30rem;
 }
 .main__ul{
   margin-left: 1rem;
+}
+.main__logo{
+  height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+}
+.main__logo img{
+  height: 100%;
+  width: 100%;
+  border-radius: 50%
+}
+.main__desc{
+  padding: 2rem 5rem 2rem 0;
 }
 .empty-state{
   height: 30rem;
