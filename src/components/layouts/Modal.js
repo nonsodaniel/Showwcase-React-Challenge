@@ -26,7 +26,6 @@ const AddModal = (props) => {
     }
     const handleCountry = (selectedOption) => {
         setCountryName(selectedOption)
-        console.log("change")
     };
     const handleSchool = (selectedOption) => {
         setSchoolName(selectedOption)
@@ -47,14 +46,16 @@ const AddModal = (props) => {
             let newData = [...response, postObj]
             localStorage.setItem('profile', JSON.stringify(newData))
             await props.getProfile()
+            closeModal()
         } else {
             localStorage.setItem('profile', JSON.stringify([postObj]))
             await props.getProfile()
+            closeModal()
         }
+
     }
 
     useEffect(() => {
-        console.log(props.getProfile(), 'fuck')
         fetchCountries()
     }, [])
 
@@ -73,7 +74,6 @@ const AddModal = (props) => {
 
 
     let schoolList = [];
-    console.log('school', school)
     if (school && school.length > 0) {
         school.forEach((value) => {
             schoolList.push({ value: value.name, label: value.name });

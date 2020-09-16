@@ -24,9 +24,6 @@ const Profile = (props) => {
         fetchProfile()
         console.log(props.profile)
     }, [])
-    // useEffect(() => {
-
-    // }, [props.profile || props.loading])
 
     const details = <>
 
