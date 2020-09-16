@@ -2,8 +2,6 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const ProfileAside = ({ data }) => {
-    console.log("prof", data)
-
     return (
 
         <div class="sidebar-wrap">
