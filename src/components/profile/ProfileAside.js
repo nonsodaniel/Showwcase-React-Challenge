@@ -1,14 +1,25 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const ProfileAside = (props) => {
-    console.log("prof", props)
+const ProfileAside = ({ data }) => {
+    console.log("prof", data)
+
     return (
 
         <div class="sidebar-wrap">
             <div class="sidebar-content">
                 <ul class="sidebar__ul">
-                    <li class="sidebar__li"><NavLink to="/"> all those who wander are losts</NavLink></li>
+                    {
+                        data && data.map(o => {
+                            console.log(o)
+                            let { id, school } = o
+                            return (
+                                <li class="sidebar__li" key={id}>
+                                    <NavLink to="/"> {school}</NavLink>
+                                </li>
+                            )
+                        })
+                    }
                 </ul>
             </div>
         </div>

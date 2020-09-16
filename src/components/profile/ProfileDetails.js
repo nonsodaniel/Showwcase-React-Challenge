@@ -10,7 +10,7 @@ const ProfileDetails = (props) => {
                 {
                     props.data && props.data.length > 0 ? (
                         props.data.map(o => {
-                            console.log(o)
+                            // console.log(o)
                             let { id, school, field, grade, degree, startYear, endYear, description } = o
                             return (
                                 <div class="col" key={id}>

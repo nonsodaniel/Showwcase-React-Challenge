@@ -22,7 +22,6 @@ const Profile = (props) => {
 
     useEffect(() => {
         fetchProfile()
-        console.log(props.profile)
     }, [])
 
     const details = <>
