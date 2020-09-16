@@ -7,3 +7,6 @@
 .font-3{
     font-size: 3rem;
 }
+.v-hidden{
+    visibility: hidden;
+}

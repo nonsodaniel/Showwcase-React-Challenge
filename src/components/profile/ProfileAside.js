@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 
 const ProfileAside = ({ data }) => {
     return (
-
         <div class="sidebar-wrap">
             <div class="sidebar-content">
                 <ul class="sidebar__ul">
