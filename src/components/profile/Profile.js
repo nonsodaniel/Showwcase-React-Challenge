@@ -67,6 +67,7 @@ const Profile = (props) => {
     const handleSchool = (selectedOption) => {
         setSchoolName(selectedOption)
         document.getElementById(selectedOption.id).scrollIntoView()
+        window.scrollTo(0, 0);
     };
 
     useEffect(() => {
