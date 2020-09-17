@@ -223,7 +223,7 @@ const AddModal = (props) => {
                     </div>
                     <div className="form-group">
                         <label htmlFor="school__description">Description</label>
-                        <div className="input-field input-field-modal">
+                        <div className="input-field input-field-modal textarea-wrap">
                             <textarea name="" id="school__description" className="school__description"
                                 cols="30" rows="10"
                                 placeholder='Description....'

@@ -65,6 +65,9 @@ select:focus{
     width: 100%;
     border-radius: 50%;
   }
+  .textarea-wrap{
+    height: 11rem;
+  }
   .school__description{
     border-color: transparent;
     height: 90px;
@@ -73,6 +76,9 @@ select:focus{
       position: absolute;
       background-color: #f0f0f0;
       padding: 1rem 1.5rem;
+      font-weight: 600;
+    /* font-size: 1.1rem; */
+    color: #333;
   }
  
 

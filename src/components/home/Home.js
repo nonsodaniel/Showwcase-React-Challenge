@@ -10,17 +10,17 @@ const Home = (props) => {
         localStorage.setItem('name', name)
     }
     return (
-        <div class="home">
-            <div class="form-wrap">
-                <form class="sign-in-form" onSubmit={handleSave}>
-                    <p class="text-welcome">Hi there! Welcome to your education showcase.</p>
-                    <p class="text-desc">Type your name and click "Enter" below to begin!</p>
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
+        <div className="home">
+            <div className="form-wrap">
+                <form className="sign-in-form" onSubmit={handleSave}>
+                    <p className="text-welcome">Hi there! Welcome to your education showcase.</p>
+                    <p className="text-desc">Type your name and click "Enter" below to begin!</p>
+                    <div className="input-field">
+                        <i className="fas fa-user"></i>
                         <input type="text" placeholder="Your name"
                             onChange={({ target }) => setname(target.value)} />
                     </div>
-                    <button type="submit" class="btn solid" disabled={name ? false : true} >Enter</button>
+                    <button type="submit" className="btn solid" disabled={name ? false : true} >Enter</button>
                 </form>
             </div>
         </div>
