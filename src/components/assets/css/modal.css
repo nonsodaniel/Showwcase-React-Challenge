@@ -18,6 +18,7 @@
 .modal-body{
     overflow-y: scroll;
     height: 31rem;
+    width: 100%;
 }
 .form-group{
     width: 100%;

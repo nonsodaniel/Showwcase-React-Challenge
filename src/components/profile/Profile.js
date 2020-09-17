@@ -67,8 +67,7 @@ const Profile = (props) => {
     }
     const handleSchool = (selectedOption) => {
         setSchoolName(selectedOption)
-        return console.log('selectedOption', selectedOption)
-        //document.getElementById(id).scrollIntoView()
+        document.getElementById(selectedOption.id).scrollIntoView()
     };
 
     useEffect(() => {
@@ -84,8 +83,8 @@ const Profile = (props) => {
     }, [getProfile])
 
     const details = <>
-        <div class="content">
-            <div class="row">
+        <div className="content">
+            <div className="row">
                 <ProfileAside data={props.profile} />
                 <ProfileDetails data={props.profile} openModal={openModal} />
             </div>
@@ -95,7 +94,8 @@ const Profile = (props) => {
 
     if (profile && profile.length > 0) {
         profile.forEach((value) => {
-            schoolList.push({ value: value.school, label: value.school, id: value.id });
+            let { school, id } = value
+            schoolList.push({ value: school, label: school, id: id });
         });
     }
     return (

@@ -1,3 +1,8 @@
+
+:root{
+    --color-pry: #5995fd;
+}
+
 .text-center{
     text-align: center;
 }
@@ -14,5 +19,11 @@
     color: #ff0000ba;;
 }
 .text-primary{
-    color: #5995fd;
+    color: var(--color-pry);
+}
+.li__active{
+    color: var(--color-pry);
+}
+.font-light{
+    font-weight: 100;
 }

@@ -173,7 +173,7 @@ const AddModal = (props) => {
                     <div className="form-group">
                         <label htmlFor="school__degree">Degree</label>
                         <div className="input-field input-field-modal">
-                            <i className="fas fa-user"></i>
+                            <i className="fas fa-book-reader"></i>
                             <input type="text" placeholder="Bachelor's"
                                 onChange={({ target }) => setDegree(target.value)}
                                 required={false} value={degree}
@@ -184,33 +184,31 @@ const AddModal = (props) => {
                     <div className="form-group">
                         <label htmlFor="school__degree">Field of Study</label>
                         <div className="input-field input-field-modal">
-                            <i className="fas fa-user"></i>
+                            <i className="fas fa-graduation-cap"></i>
                             <input type="text" placeholder="Computer Science"
                                 onChange={({ target }) => setField(target.value)}
                                 required={false} value={field}
                             />
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="form-group">
-                            <label htmlFor="start__year">Start Year</label>
-                            <div className="input-field input-field-modal spaced">
-                                <i className="fas fa-user"></i>
-                                <input type="month" id="start__year" placeholder="Start Year"
-                                    onChange={(e) => setStartYear(e.target.value)}
-                                    required={false} value={startYear}
-                                />
-                            </div>
+                    <div className="form-group">
+                        <label htmlFor="start__year">Start Year</label>
+                        <div className="input-field input-field-modal ">
+                            <i className="fas fa-clock font-light"></i>
+                            <input type="month" id="start__year" placeholder="Start Year"
+                                onChange={(e) => setStartYear(e.target.value)}
+                                required={false} value={startYear}
+                            />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="end__year">End Year</label>
-                            <div className="input-field input-field-modal">
-                                <i className="fas fa-user"></i>
-                                <input type="month" id="end__year" placeholder="End year"
-                                    onChange={(e) => setEndYear(e.target.value)}
-                                    required={false} value={endYear}
-                                />
-                            </div>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="end__year">End Year</label>
+                        <div className="input-field input-field-modal">
+                            <i className="fas fa-clock"></i>
+                            <input type="month" id="end__year" placeholder="End year"
+                                onChange={(e) => setEndYear(e.target.value)}
+                                required={false} value={endYear}
+                            />
                         </div>
                     </div>
                     <div className="form-group">
@@ -240,7 +238,7 @@ const AddModal = (props) => {
                                 <input type="submit" value="Edit" className="btn solid" />
 
                             ) : (
-                                    <input type="submit" value="Enter" className="btn solid" />
+                                    <input type="submit" value="Save" className="btn solid" />
 
                                 )
                         }

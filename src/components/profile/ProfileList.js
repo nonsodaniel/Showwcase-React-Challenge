@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import { connect } from 'react-redux';
 import { convertMonthYear } from '../utils/dateFunctions'
-import eduLogo from '../assets/edulogo.png'
+import eduLogo from '../assets/images.png'
 import { withRouter } from 'react-router-dom'
 import * as actions from '../../store/actions'
 
