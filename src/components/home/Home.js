@@ -40,7 +40,6 @@ const Home = (props) => {
                 <div className="form-wrap">
                     <form className="sign-in-form" onSubmit={handleSave}>
                         <p className="text-welcome">Hi there! Welcome to your education showcase.</p>
-
                         {
                             props.name ? (
                                 <Link to={`/profile/${props.name}`}> <Button type="submit">View Profile 	&#8594;</Button></Link>

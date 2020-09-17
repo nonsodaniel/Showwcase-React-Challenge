@@ -8,9 +8,9 @@ const ProfileDetails = (props) => {
             <div className="main-content">
                 {
                     props.data && props.data.length > 0 ? (
-                        props.data.map(o => {
+                        props.data.map(data_ => {
                             return (
-                                <ProfileList key={o.id}  {...o} openModal={props.openModal} />
+                                <ProfileList key={data_.id}  {...data_} openModal={props.openModal} />
                             )
                         })
                     ) : (<h1>Hello</h1>)

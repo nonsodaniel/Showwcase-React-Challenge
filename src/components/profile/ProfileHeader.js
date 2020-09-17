@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import { logout } from '../utils/userAction'
 import styled from "styled-components";
 
 const Button = styled.button`
@@ -20,14 +21,23 @@ const ProfileHeader = (props) => {
     useEffect(() => {
         setName(localStorage.getItem('name'))
     }, [])
+    const handleLogout = () => {
+        logout()
+        props.history.push('/')
+    }
     return (
         <>
             <Link to='/'><i className="fas fa-home pointer"></i></Link>
             <header>
                 <p className="welcome__edu"> Welcome to <b>{name}'s </b> education page.</p>
-                <Button type="submit" onClick={props.openModal}>
-                    Add new Education
+                <div className="cta">
+                    <Button type="submit" onClick={props.openModal}>
+                        Add new Education
                 </Button >
+                    <span onClick={handleLogout}> <i className="fas fa-sign-out-alt icon-logout text-danger"></i></span>
+
+                </div>
+
             </header>
 
 
@@ -35,4 +45,4 @@ const ProfileHeader = (props) => {
     )
 }
 
-export default ProfileHeader
+export default withRouter(ProfileHeader)

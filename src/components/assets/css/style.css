@@ -28,13 +28,15 @@ input {
   overflow: hidden;
   display: flex;
 }
-.fa-home{
+.fa-home, .icon-logout{
   display: flex;
   justify-content: center;
   margin: 2rem 0;
   font-size: 1.5rem;
   color: gray;
-
+}
+.icon-logout{
+  color: gray;
 }
 .forms-container {
   width: 100%;
@@ -251,6 +253,15 @@ height: 30rem;
 }
 .select__school{
   display: none;
+}
+.cta{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+}
+.cta span{
+  transform: translate(2rem, -0.8rem);
 }
 
 

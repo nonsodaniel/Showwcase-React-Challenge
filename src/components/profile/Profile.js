@@ -44,7 +44,6 @@ const style = {
     })
 };
 
-
 const Profile = (props) => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [modalData, setModalData] = React.useState({});
@@ -111,6 +110,7 @@ const Profile = (props) => {
     }
     return (
         <>
+
             <ProfileHeader openModal={openModal} />
             {
                 props.profile && props.profile.length > 0 ? (
