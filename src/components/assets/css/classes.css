@@ -16,7 +16,7 @@
     visibility: hidden;
 }
 .text-danger{
-    color: #ff0000ba;;
+    color: #ff0000ba !important;
 }
 .text-primary{
     color: var(--color-pry);
