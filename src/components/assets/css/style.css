@@ -268,15 +268,10 @@ form{
 }
 .select__school{
   padding: 1rem;
+  display: block;
 }
 .main-wrap {
-  margin-bottom: 6rem;
+  margin-bottom: 5rem;
 }
-   /* .row{
-    flex-direction: column;
-  }  */
-  /* .content {
-    padding: 0 2rem;
-}  */
 
 }

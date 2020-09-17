@@ -87,7 +87,6 @@ const AddModal = (props) => {
         countryList.push({ value: value.name, label: value.name });
     });
 
-
     let schoolList = [];
     if (school && school.length > 0) {
         school.forEach((value) => {

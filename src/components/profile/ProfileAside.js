@@ -1,7 +1,10 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 
 const ProfileAside = ({ data }) => {
+
+    const handleClick = (id) => {
+        document.getElementById(id).scrollIntoView()
+    }
     return (
         <div className="sidebar-wrap">
             <div className="sidebar-content">
@@ -10,8 +13,8 @@ const ProfileAside = ({ data }) => {
                         data && data.map(o => {
                             let { id, school } = o
                             return (
-                                <li className="sidebar__li" key={id}>
-                                    <NavLink to={`#${id}`} activeClassName="selected"> {school}</NavLink>
+                                <li className="sidebar__li pointer" key={id} onClick={() => handleClick(id)} >
+                                    <span>{school}</span>
                                 </li>
                             )
                         })

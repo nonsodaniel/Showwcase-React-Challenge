@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import { connect } from 'react-redux';
-import { NavHashLink as NavLink } from 'react-router-hash-link';
 import { convertMonthYear } from '../utils/dateFunctions'
 import eduLogo from '../assets/edulogo.png'
 import { withRouter } from 'react-router-dom'
@@ -10,9 +9,6 @@ import * as actions from '../../store/actions'
 const ProfileList = (props) => {
     const { id, school, field, grade, degree, startYear, endYear, description } = props;
     const [profile, setProfile] = useState([])
-
-
-
 
     useEffect(() => {
         Modal.setAppElement('body');

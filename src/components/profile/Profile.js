@@ -67,6 +67,8 @@ const Profile = (props) => {
     }
     const handleSchool = (selectedOption) => {
         setSchoolName(selectedOption)
+        return console.log('selectedOption', selectedOption)
+        //document.getElementById(id).scrollIntoView()
     };
 
     useEffect(() => {
@@ -93,7 +95,7 @@ const Profile = (props) => {
 
     if (profile && profile.length > 0) {
         profile.forEach((value) => {
-            schoolList.push({ value: value.school, label: value.school });
+            schoolList.push({ value: value.school, label: value.school, id: value.id });
         });
     }
     return (
