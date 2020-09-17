@@ -176,7 +176,7 @@ const AddModal = (props) => {
                             <i className="fas fa-book-reader"></i>
                             <input type="text" placeholder="Bachelor's"
                                 onChange={({ target }) => setDegree(target.value)}
-                                required={false} value={degree}
+                                required={true} value={degree}
                             />
                         </div>
                     </div>
@@ -187,7 +187,7 @@ const AddModal = (props) => {
                             <i className="fas fa-graduation-cap"></i>
                             <input type="text" placeholder="Computer Science"
                                 onChange={({ target }) => setField(target.value)}
-                                required={false} value={field}
+                                required={true} value={field}
                             />
                         </div>
                     </div>
@@ -197,7 +197,7 @@ const AddModal = (props) => {
                             <i className="fas fa-clock font-light"></i>
                             <input type="month" id="start__year" placeholder="Start Year"
                                 onChange={(e) => setStartYear(e.target.value)}
-                                required={false} value={startYear}
+                                required={true} value={startYear}
                             />
                         </div>
                     </div>
@@ -207,7 +207,7 @@ const AddModal = (props) => {
                             <i className="fas fa-clock"></i>
                             <input type="month" id="end__year" placeholder="End year"
                                 onChange={(e) => setEndYear(e.target.value)}
-                                required={false} value={endYear}
+                                required={true} value={endYear}
                             />
                         </div>
                     </div>
@@ -215,9 +215,10 @@ const AddModal = (props) => {
                         <label htmlFor="school__grade">Grade</label>
                         <div className="input-field input-field-modal">
                             <i className="fas fa-user"></i>
-                            <input type="text" id="school__grade" value={grade} placeholder="Your grade"
+                            <input type="text" id="school__grade" value={grade}
+                                placeholder="e.g 4.0/5.0 , A etc"
                                 onChange={(e) => setGrade(e.target.value)}
-                                required={false}
+                                required={true}
                             />
                         </div>
                     </div>
@@ -226,19 +227,22 @@ const AddModal = (props) => {
                         <div className="input-field input-field-modal textarea-wrap">
                             <textarea name="" id="school__description" className="school__description"
                                 cols="30" rows="10"
-                                placeholder='Description....'
+                                placeholder={`Give a detailed experience of your school and experiences`}
                                 onChange={({ target }) => setDescription(target.value)}
-                                required={false} value={description}
+                                required={true} value={description}
                             ></textarea>
                         </div>
                     </div>
                     <div className="modal-footer">
                         {
                             props.editData.editMode ? (
-                                <input type="submit" value="Edit" className="btn solid" />
+                                <input type="submit" value="Update" className="btn solid" />
 
                             ) : (
-                                    <input type="submit" value="Save" className="btn solid" />
+
+                                    <input type="submit" value="Save"
+                                        disabled={schoolName ? false : true}
+                                        className="btn solid" />
 
                                 )
                         }

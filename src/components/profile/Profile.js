@@ -101,20 +101,26 @@ const Profile = (props) => {
     return (
         <>
             <ProfileHeader openModal={openModal} />
-            <div className="select__school">
-                <Select
-                    value={schoolName}
-                    onChange={handleSchool}
-                    options={schoolList}
-                    className="mySelect"
-                    placeholder="My School"
-                    theme={{
-                        borderRadius: 0,
-                        spacing: { controlHeight: 55, baseUnit: 5 },
-                    }}
-                    styles={style}
-                />
-            </div>
+            {console.log("hello", props.profile)}
+            {
+                props.profile && props.profile.length > 0 ? (
+                    <div className="select__school">
+                        <Select
+                            value={schoolName}
+                            onChange={handleSchool}
+                            options={schoolList}
+                            className="mySelect"
+                            placeholder="My School"
+                            theme={{
+                                borderRadius: 0,
+                                spacing: { controlHeight: 55, baseUnit: 5 },
+                            }}
+                            styles={style}
+                        />
+                    </div>
+
+                ) : null
+            }
 
             {
                 !props.profile || !props.profile.length > 0 ?
