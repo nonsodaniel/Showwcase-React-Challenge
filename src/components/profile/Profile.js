@@ -56,10 +56,6 @@ const Profile = (props) => {
         setIsOpen(true);
     }
 
-    function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        // subtitle.style.color = '#f00';
-    }
 
     function closeModal() {
         setIsOpen(false);
@@ -74,9 +70,6 @@ const Profile = (props) => {
         Modal.setAppElement('body');
     })
     const { getProfile, getName } = props;
-
-
-
     useEffect(() => {
         const fetchName = async () => {
             await getName()
@@ -90,14 +83,14 @@ const Profile = (props) => {
         }
         fetchProfile()
     }, [getProfile])
-    // useEffect(() => {
-    //     const check = () => {
-    //         if (!localStorage.getItem('name')) {
-    //             props.history.push('/')
-    //         }
-    //     }
-    //     check()
-    // }, [])
+    useEffect(() => {
+        const check = () => {
+            if (!localStorage.getItem('name')) {
+                props.history.push('/')
+            }
+        }
+        check()
+    }, [])
 
 
     const details = <>
@@ -148,7 +141,6 @@ const Profile = (props) => {
 
             <Modal
                 isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="Example Modal"

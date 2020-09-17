@@ -58,7 +58,7 @@ const AddModal = (props) => {
         const response = await JSON.parse(localStorage.getItem('profile'))
         if (response && response.length > 0) {
             let newData = [...response, postObj]
-            localStorage.setItem('profile', JSON.stringify(newData))
+            localStorage.setItem('profile', JSON.stringify(newData.reverse()))
             await props.getProfile()
             closeModal()
         } else {
