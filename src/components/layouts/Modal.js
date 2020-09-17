@@ -52,6 +52,9 @@ const AddModal = (props) => {
     }
 
     const saveProfile = async (postObj) => {
+        if (!countryName) {
+            alert("Kindly fill in the country name")
+        }
         const response = await JSON.parse(localStorage.getItem('profile'))
         if (response && response.length > 0) {
             let newData = [...response, postObj]
@@ -100,7 +103,6 @@ const AddModal = (props) => {
             border: state.isFocused ? 0 : 0,
             background: '#f0f0f0',
             fontSize: '.9rem',
-            // This line disable the blue border
             boxShadow: state.isFocused ? 0 : 0,
             "&:hover": {
                 border: state.isFocused ? 0 : 0
@@ -108,11 +110,11 @@ const AddModal = (props) => {
         })
     };
     const schoolIcon = !countryName && schoolList.length === 0 ?
-        (<i class="fas fa-university"></i>) :
+        (<i className="fas fa-university"></i>) :
         countryName && schoolList.length === 0 ?
-            (<i class="fas fa-spinner fa-pulse"></i>) :
+            (<i className="fas fa-spinner fa-pulse"></i>) :
             countryName && schoolList.length > 0 ?
-                (<i class="fas fa-university"></i>) : null
+                (<i className="fas fa-university"></i>) : null
 
 
     return (
@@ -139,6 +141,7 @@ const AddModal = (props) => {
                                     spacing: { controlHeight: 55, baseUnit: 5 },
                                 }}
                                 styles={style}
+                                required={true}
                             />
 
                         </div>
@@ -161,6 +164,7 @@ const AddModal = (props) => {
                                     spacing: { controlHeight: 55, baseUnit: 5 },
                                 }}
                                 styles={style}
+                                required={true}
                             />
                         </div>
                     </div>
@@ -235,7 +239,6 @@ const AddModal = (props) => {
                             ) : (
 
                                     <input type="submit" value="Save"
-
                                         className="btn solid" />
 
                                 )

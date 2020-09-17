@@ -1,9 +1,10 @@
 import {
-    LOADING, GET_SCHOOLS, GET_SCHOOLS_ERROR, ADD_PROFILE, GET_PROFILE
+    LOADING, GET_SCHOOLS, GET_SCHOOLS_ERROR, ADD_PROFILE, GET_PROFILE, GET_NAME
 } from "../actions/types";
 
 const INTIAL_STATE = {
-    schools: []
+    schools: [],
+    name: ''
 }
 
 export default (state = INTIAL_STATE, actions) => {
@@ -18,6 +19,8 @@ export default (state = INTIAL_STATE, actions) => {
             return { ...state, newProfile: actions.payload }
         case GET_PROFILE:
             return { ...state, profile: actions.payload }
+        case GET_NAME:
+            return { ...state, name: actions.payload }
 
         default:
             return { ...state }

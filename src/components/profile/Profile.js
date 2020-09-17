@@ -72,13 +72,16 @@ const Profile = (props) => {
     useEffect(() => {
         Modal.setAppElement('body');
     })
-    const { getProfile } = props;
+    const { getProfile, getName } = props;
+
+
 
     useEffect(() => {
-        if (localStorage.getItem('name') !== '') {
-            props.history.push('/')
+        const fetchName = async () => {
+            await getName()
         }
-    })
+        fetchName()
+    }, [getName])
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -86,6 +89,15 @@ const Profile = (props) => {
         }
         fetchProfile()
     }, [getProfile])
+    // useEffect(() => {
+    //     const check = () => {
+    //         if (!localStorage.getItem('name')) {
+    //             props.history.push('/')
+    //         }
+    //     }
+    //     check()
+    // }, [])
+
 
     const details = <>
         <div className="content">
@@ -149,10 +161,9 @@ const Profile = (props) => {
 }
 
 const mapStateToProps = state => {
-
-    const { profile } = state.schoolData
+    const { profile, name } = state.schoolData
     return {
-        profile
+        profile, name
     }
 
 }

@@ -184,6 +184,9 @@ height: 30rem;
 .main-wrap{
   overflow-y: scroll;
   min-width: 67%;
+  display: flex;
+    justify-content: center;
+    width: 100%;
 }
 .main-content{
   width: 90%;

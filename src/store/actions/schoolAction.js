@@ -1,7 +1,7 @@
 import { Get } from '../../apiServices/apiHandler.service'
 
 import {
-    LOADING, GET_SCHOOLS, GET_SCHOOLS_ERROR, ADD_PROFILE, GET_PROFILE
+    LOADING, GET_SCHOOLS, GET_SCHOOLS_ERROR, ADD_PROFILE, GET_PROFILE, GET_NAME
 } from "./types";
 
 
@@ -32,6 +32,17 @@ export const getProfile = () => {
             dispatch({ type: GET_PROFILE, payload: response })
         } else {
             dispatch({ type: GET_PROFILE, payload: [] })
+        }
+    }
+}
+
+export const getName = () => {
+    return async (dispatch) => {
+        const response = await localStorage.getItem('name')
+        if (response) {
+            dispatch({ type: GET_NAME, payload: response })
+        } else {
+            dispatch({ type: GET_NAME, payload: '' })
         }
     }
 }
