@@ -264,6 +264,14 @@ height: 30rem;
   transform: translate(2rem, -0.8rem);
 }
 
+.no-match{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(50px);
+    height: 100vh;
+}
 
 @media (max-width: 1050px) {
   .sidebar-wrap{
