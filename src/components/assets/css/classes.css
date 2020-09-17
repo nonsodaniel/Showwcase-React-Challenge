@@ -10,3 +10,9 @@
 .v-hidden{
     visibility: hidden;
 }
+.text-danger{
+    color: #ff0000ba;;
+}
+.text-primary{
+    color: #5995fd;
+}

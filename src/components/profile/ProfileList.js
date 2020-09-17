@@ -6,27 +6,8 @@ import eduLogo from '../assets/edulogo.png'
 import { withRouter } from 'react-router-dom'
 import * as actions from '../../store/actions'
 
-
-// const customStyles = {
-//     content: {
-//         height: '40rem',
-//         top: '50%',
-//         left: '50%',
-//         right: 'auto',
-//         bottom: 'auto',
-//         marginRight: '-50%',
-//         padding: '0',
-//         width: '60%',
-//         transform: 'translate(-50%, -50%)',
-//         boxShadow: `rgba(0, 0, 0, 0.25) 0px 12px 15px 0px`,
-//         overflow: 'hidden'
-
-//     }
-// };
-
 const ProfileList = (props) => {
     const { id, school, field, grade, degree, startYear, endYear, description } = props;
-    // const [modalIsOpen, setIsOpen] = React.useState(false);
     const [profile, setProfile] = useState([])
 
 
@@ -36,7 +17,9 @@ const ProfileList = (props) => {
         Modal.setAppElement('body');
         setProfile(props.profile)
     }, [props.profile])
-    const editProfile = () => {
+    const editProfile = ({ target: { id } }) => {
+        let editData = profile.find(data => data.id === id)
+        props.openModal(editData)
     }
     const deleteProfile = async ({ target: { id } }) => {
         let newData = profile.filter(data_ => data_.id !== id)
@@ -49,8 +32,8 @@ const ProfileList = (props) => {
                 <div className="main-top">
                     <div className="main__logo">  <img src={eduLogo} alt="main__logo" /> </div>
                     <span className="main__icon-box">
-                        <i className="fas fa-edit pointer" id={id} onClick={editProfile}></i>
-                        <i className="fas fa-trash pointer" id={id} onClick={deleteProfile}></i>
+                        <i className="fas fa-edit pointer text-primary" id={id} onClick={editProfile}></i>
+                        <i className="fas fa-trash pointer text-danger" id={id} onClick={deleteProfile}></i>
                     </span>
                 </div>
                 <h5 className="main__title"> {school}  University</h5>

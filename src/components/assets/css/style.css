@@ -13,6 +13,9 @@
   --normal-font-size: 1.25rem;
   --small-font-size: .813rem;
 }
+body{
+  background: #f5f7fa;
+}
 
 body,
 input {
@@ -153,6 +156,10 @@ ul{
 height: 30rem;
   padding: 2rem 0 2rem 2rem;
     min-width: 30%;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+
 }
 .sidebar__title{
   font-family: sans-serif;
@@ -168,8 +175,8 @@ height: 30rem;
 }
 .sidebar__ul a{
   text-decoration: none;
-  color: black;
-  font-size: 1rem;
+  color: #000000e3;
+  font-size: .8rem;
 }
 .main-wrap{
   height: 100%;
@@ -192,8 +199,7 @@ height: 30rem;
 }
 .main__icon-box i{
   font-weight: 200;
-  font-size: 1.4rem;
-  color: grey;
+  font-size: 1.2rem;
 }
 .main__icon-box i:nth-child(2){
   font-weight: 900;
@@ -201,6 +207,9 @@ height: 30rem;
 .col{
   padding: 2rem 3rem;
   margin-bottom: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    background: white;
+    border-radius: 7px;
 }
 .main__title{
   font-family: sans-serif;
@@ -228,6 +237,8 @@ height: 30rem;
 }
 .main__desc{
   padding: 2rem 5rem 2rem 0;
+  font-size: .9rem;
+  color: #000000b0;
 }
 .empty-state{
   height: 30rem;
@@ -240,19 +251,21 @@ height: 30rem;
 
 
 
-@media (max-width: 870px) {
-  .home {
-    height: 100vh;
+@media (max-width: 1050px) {
+  .sidebar-wrap{
+    display: none;
   }
-}
-
-@media (max-width: 570px) {
-  form {
+  .content {
     padding: 0;
-  }
-  .home {
-    padding: 1.5rem;
-  }
-
+}
+.main__desc {
+  padding: 1rem 0;
+}
+   /* .row{
+    flex-direction: column;
+  }  */
+  /* .content {
+    padding: 0 2rem;
+}  */
 
 }

@@ -6,15 +6,16 @@ import * as actions from '../../store/actions'
 import countries from '../../store/jsons/country.json'
 import { generateId } from '../utils/idGenerator'
 const AddModal = (props) => {
+    console.log("modal", props.editData)
     const [school, setSchool] = useState('')
-    const [degree, setDegree] = useState('')
-    const [grade, setGrade] = useState('')
-    const [field, setField] = useState('')
-    const [startYear, setStartYear] = useState('')
-    const [endYear, setEndYear] = useState('')
-    const [description, setDescription] = useState('')
-    const [countryName, setCountryName] = useState('')
-    const [schoolName, setSchoolName] = useState('')
+    const [degree, setDegree] = useState(props.editData.degree || '')
+    const [grade, setGrade] = useState(props.editData.grade || '')
+    const [field, setField] = useState(props.editData.field || '')
+    const [startYear, setStartYear] = useState(props.editData.startYear || '')
+    const [endYear, setEndYear] = useState(props.editData.endYear || '')
+    const [description, setDescription] = useState(props.editData.description || '')
+    const [countryName, setCountryName] = useState(props.editData.schoolLocation || '')
+    const [schoolName, setSchoolName] = useState(props.editData.mySchool || '')
     const { getSchools } = props;
 
     const closeModal = () => {
@@ -32,12 +33,23 @@ const AddModal = (props) => {
 
     const handlSave = async (e) => {
         e.preventDefault()
-        let postObj = {
-            id: generateId(), schoolLocation: countryName,
+        let { label, value } = schoolName
+
+        const postObj = {
+            schoolLocation: countryName, mySchool: { label, value },
             school: schoolName.value, website: schoolName.website,
             degree, field, startYear, endYear, grade, description
         }
-        saveProfile(postObj)
+        if (props.editData.editMode) {
+            let { profile } = props
+            let newData = profile.find(data => props.editData.id === data.id)
+            Object.assign(profile, { grade: "end" })
+            console.log("sewa", newData)
+        } else {
+            let id = generateId()
+            postObj['id'] = id
+            saveProfile(postObj)
+        }
     }
 
     const saveProfile = async (postObj) => {
@@ -54,6 +66,14 @@ const AddModal = (props) => {
         }
     }
 
+    const { getProfile } = props;
+
+    useEffect(() => {
+        const fetchProfile = async () => {
+            await getProfile()
+        }
+        fetchProfile()
+    }, [getProfile])
 
     useEffect(() => {
         getSchools(countryName.value)
@@ -158,7 +178,7 @@ const AddModal = (props) => {
                             <i className="fas fa-user"></i>
                             <input type="text" placeholder="Bachelor's"
                                 onChange={({ target }) => setDegree(target.value)}
-                                required={false}
+                                required={false} value={degree}
                             />
                         </div>
                     </div>
@@ -169,7 +189,7 @@ const AddModal = (props) => {
                             <i className="fas fa-user"></i>
                             <input type="text" placeholder="Computer Science"
                                 onChange={({ target }) => setField(target.value)}
-                                required={false}
+                                required={false} value={field}
                             />
                         </div>
                     </div>
@@ -179,7 +199,8 @@ const AddModal = (props) => {
                             <div className="input-field input-field-modal spaced">
                                 <i className="fas fa-user"></i>
                                 <input type="month" id="start__year" placeholder="Start Year"
-                                    onChange={(e) => setStartYear(e.target.value)} required={false}
+                                    onChange={(e) => setStartYear(e.target.value)}
+                                    required={false} value={startYear}
                                 />
                             </div>
                         </div>
@@ -188,7 +209,8 @@ const AddModal = (props) => {
                             <div className="input-field input-field-modal">
                                 <i className="fas fa-user"></i>
                                 <input type="month" id="end__year" placeholder="End year"
-                                    onChange={(e) => setEndYear(e.target.value)} required={false}
+                                    onChange={(e) => setEndYear(e.target.value)}
+                                    required={false} value={endYear}
                                 />
                             </div>
                         </div>
@@ -198,7 +220,8 @@ const AddModal = (props) => {
                         <div className="input-field input-field-modal">
                             <i className="fas fa-user"></i>
                             <input type="text" id="school__grade" value={grade} placeholder="Your grade"
-                                onChange={(e) => setGrade(e.target.value)} required={false}
+                                onChange={(e) => setGrade(e.target.value)}
+                                required={false} value={grade}
                             />
                         </div>
                     </div>
@@ -209,12 +232,20 @@ const AddModal = (props) => {
                                 cols="30" rows="10"
                                 placeholder='Description....'
                                 onChange={({ target }) => setDescription(target.value)}
-                                required={false}
+                                required={false} value={description}
                             ></textarea>
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <input type="submit" value="Enter" className="btn solid" />
+                        {
+                            props.editData.editMode ? (
+                                <input type="submit" value="Edit" className="btn solid" />
+
+                            ) : (
+                                    <input type="submit" value="Enter" className="btn solid" />
+
+                                )
+                        }
                     </div>
                 </form>
             </div>
@@ -223,12 +254,11 @@ const AddModal = (props) => {
     )
 }
 
-
 const mapStateToProps = state => {
     console.log("state", state)
-    const { schools, loading } = state.schoolData
+    const { schools, loading, profile } = state.schoolData
     return {
-        schools, loading
+        schools, loading, profile
     }
 }
 

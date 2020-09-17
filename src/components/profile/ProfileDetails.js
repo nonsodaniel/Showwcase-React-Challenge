@@ -10,7 +10,7 @@ const ProfileDetails = (props) => {
                     props.data && props.data.length > 0 ? (
                         props.data.map(o => {
                             return (
-                                <ProfileList key={o.id}  {...o} />
+                                <ProfileList key={o.id}  {...o} openModal={props.openModal} />
                             )
                         })
                     ) : (<h1>Hello</h1>)
