@@ -8,11 +8,10 @@ const ProfileAside = ({ data }) => {
                 <ul className="sidebar__ul">
                     {
                         data && data.map(o => {
-                            console.log(o)
                             let { id, school } = o
                             return (
                                 <li className="sidebar__li" key={id}>
-                                    <NavLink to="/"> {school}</NavLink>
+                                    <NavLink to={`#${id}`} activeClassName="selected"> {school}</NavLink>
                                 </li>
                             )
                         })

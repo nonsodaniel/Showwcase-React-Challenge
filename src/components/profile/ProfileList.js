@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import { connect } from 'react-redux';
+import { NavHashLink as NavLink } from 'react-router-hash-link';
 import { convertMonthYear } from '../utils/dateFunctions'
 import eduLogo from '../assets/edulogo.png'
 import { withRouter } from 'react-router-dom'
@@ -27,25 +28,22 @@ const ProfileList = (props) => {
         await props.getProfile()
     }
     return (
-        <>
-            <div className="col" key={id}>
-                <div className="main-top">
-                    <div className="main__logo">  <img src={eduLogo} alt="main__logo" /> </div>
-                    <span className="main__icon-box">
-                        <i className="fas fa-edit pointer text-primary" id={id} onClick={editProfile}></i>
-                        <i className="fas fa-trash pointer text-danger" id={id} onClick={deleteProfile}></i>
-                    </span>
-                </div>
-                <h5 className="main__title"> {school}  University</h5>
-                <p className="main__degree">{degree} in {field}</p>
-                <p className="main__date">{convertMonthYear(startYear)} - {convertMonthYear(endYear)}</p>
-                <p className="main__grade">Grade: <b><i>{grade}</i> </b></p>
-                <p className="main__desc">
-                    {description}
-                </p>
-
+        <div className="col" key={id} id={id}>
+            <div className="main-top">
+                <div className="main__logo">  <img src={eduLogo} alt="main__logo" /> </div>
+                <span className="main__icon-box">
+                    <i className="fas fa-edit pointer text-primary" id={id} onClick={editProfile}></i>
+                    <i className="fas fa-trash pointer text-danger" id={id} onClick={deleteProfile}></i>
+                </span>
             </div>
-        </>
+            <h5 className="main__title"> {school}  University</h5>
+            <p className="main__degree">{degree} in {field}</p>
+            <p className="main__date">{convertMonthYear(startYear)} - {convertMonthYear(endYear)}</p>
+            <p className="main__grade">Grade: <b><i>{grade}</i> </b></p>
+            <p className="main__desc">
+                {description}
+            </p>
+        </div>
     )
 }
 

@@ -179,9 +179,8 @@ height: 30rem;
   font-size: .8rem;
 }
 .main-wrap{
-  height: 100%;
-    overflow-y: scroll;
-    min-width: 67%;
+  overflow-y: scroll;
+  min-width: 67%;
 }
 .main-content{
   width: 90%;
@@ -246,6 +245,9 @@ height: 30rem;
   justify-content: center;
   align-items: center;
 }
+.select__school{
+  display: none;
+}
 
 
 
@@ -260,6 +262,15 @@ height: 30rem;
 }
 .main__desc {
   padding: 1rem 0;
+}
+form{
+  padding: 0rem 1rem;
+}
+.select__school{
+  padding: 1rem;
+}
+.main-wrap {
+  margin-bottom: 6rem;
 }
    /* .row{
     flex-direction: column;

@@ -6,7 +6,6 @@ import * as actions from '../../store/actions'
 import countries from '../../store/jsons/country.json'
 import { generateId } from '../utils/idGenerator'
 const AddModal = (props) => {
-    console.log("modal", props.editData)
     const [school, setSchool] = useState('')
     const [degree, setDegree] = useState(props.editData.degree || '')
     const [grade, setGrade] = useState(props.editData.grade || '')
@@ -28,13 +27,11 @@ const AddModal = (props) => {
     };
     const handleSchool = (selectedOption) => {
         setSchoolName(selectedOption)
-        console.log(selectedOption)
     };
 
     const handlSave = async (e) => {
         e.preventDefault()
         let { label, value } = schoolName
-
         const postObj = {
             schoolLocation: countryName, mySchool: { label, value },
             school: schoolName.value, website: schoolName.website,
@@ -43,8 +40,10 @@ const AddModal = (props) => {
         if (props.editData.editMode) {
             let { profile } = props
             let newData = profile.find(data => props.editData.id === data.id)
-            Object.assign(profile, { grade: "end" })
-            console.log("sewa", newData)
+            Object.assign(newData, postObj)
+            localStorage.setItem('profile', JSON.stringify(profile))
+            await props.getProfile()
+            closeModal()
         } else {
             let id = generateId()
             postObj['id'] = id
@@ -125,12 +124,12 @@ const AddModal = (props) => {
                     <i className="fas fa-times-circle modal__cancel"></i></span>
             </div>
             <div className="modal-body">
-                <div className="modal__logo pointer">
+                {/* <div className="modal__logo pointer">
                     <label htmlFor="dp" className="pointer">
                         <img src="" alt="" />
                         <input type="file" id="dp" className="v-hidden" />
                     </label>
-                </div>
+                </div> */}
                 <form className="modal-form" onSubmit={handlSave}>
                     <div className="form-group">
                         <label htmlFor="country__name">Country</label>
@@ -221,7 +220,7 @@ const AddModal = (props) => {
                             <i className="fas fa-user"></i>
                             <input type="text" id="school__grade" value={grade} placeholder="Your grade"
                                 onChange={(e) => setGrade(e.target.value)}
-                                required={false} value={grade}
+                                required={false}
                             />
                         </div>
                     </div>
@@ -255,7 +254,6 @@ const AddModal = (props) => {
 }
 
 const mapStateToProps = state => {
-    console.log("state", state)
     const { schools, loading, profile } = state.schoolData
     return {
         schools, loading, profile
