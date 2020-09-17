@@ -19,9 +19,15 @@ const ProfileList = (props) => {
         props.openModal(editData)
     }
     const deleteProfile = async ({ target: { id } }) => {
-        let newData = profile.filter(data_ => data_.id !== id)
-        await localStorage.setItem("profile", JSON.stringify(newData))
-        await props.getProfile()
+        let isDelete = window.confirm("Delete this record?")
+        if (isDelete) {
+            let newData = profile.filter(data_ => data_.id !== id)
+            await localStorage.setItem("profile", JSON.stringify(newData))
+            await props.getProfile()
+        } else {
+            return null;
+        }
+
     }
     return (
         <div className="col" key={id} id={id}>

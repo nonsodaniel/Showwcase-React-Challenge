@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import Select from 'react-select'
 import * as actions from '../../store/actions'
 
@@ -65,7 +65,13 @@ const Profile = (props) => {
         window.scrollTo(0, 0);
     };
 
+
     useEffect(() => {
+        let params = props.match.params.id
+        let name = localStorage.getItem("name")
+        if (params.toLowerCase() !== name.toLowerCase()) {
+            props.history.push('/wrong-action')
+        }
         Modal.setAppElement('body');
     })
     const { getProfile, getName } = props;
