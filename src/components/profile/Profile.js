@@ -37,7 +37,6 @@ const style = {
         background: '#f0f0f0',
         fontSize: '.9rem',
         padding: '0 2rem',
-        // This line disable the blue border
         boxShadow: state.isFocused ? 0 : 0,
         "&:hover": {
             border: state.isFocused ? 0 : 0
@@ -76,6 +75,12 @@ const Profile = (props) => {
     const { getProfile } = props;
 
     useEffect(() => {
+        if (localStorage.getItem('name') !== '') {
+            props.history.push('/')
+        }
+    })
+
+    useEffect(() => {
         const fetchProfile = async () => {
             await getProfile()
         }
@@ -101,7 +106,6 @@ const Profile = (props) => {
     return (
         <>
             <ProfileHeader openModal={openModal} />
-            {console.log("hello", props.profile)}
             {
                 props.profile && props.profile.length > 0 ? (
                     <div className="select__school">

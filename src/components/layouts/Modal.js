@@ -123,12 +123,6 @@ const AddModal = (props) => {
                     <i className="fas fa-times-circle modal__cancel"></i></span>
             </div>
             <div className="modal-body">
-                {/* <div className="modal__logo pointer">
-                    <label htmlFor="dp" className="pointer">
-                        <img src="" alt="" />
-                        <input type="file" id="dp" className="v-hidden" />
-                    </label>
-                </div> */}
                 <form className="modal-form" onSubmit={handlSave}>
                     <div className="form-group">
                         <label htmlFor="country__name">Country</label>
@@ -227,7 +221,7 @@ const AddModal = (props) => {
                         <div className="input-field input-field-modal textarea-wrap">
                             <textarea name="" id="school__description" className="school__description"
                                 cols="30" rows="10"
-                                placeholder={`Give a detailed experience of your school and experiences`}
+                                placeholder={`Give a detailed description of your school and experience `}
                                 onChange={({ target }) => setDescription(target.value)}
                                 required={true} value={description}
                             ></textarea>
@@ -241,7 +235,7 @@ const AddModal = (props) => {
                             ) : (
 
                                     <input type="submit" value="Save"
-                                        disabled={schoolName ? false : true}
+
                                         className="btn solid" />
 
                                 )
